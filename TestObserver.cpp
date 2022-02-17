@@ -3,7 +3,7 @@
 #include <Observer.h>
 
 
-void print_list(std::list<std::string> list)
+void print_list(std::vector<std::string> list)
 {
     for(auto it = list.begin(); it != list.end(); it++)
     {
@@ -19,25 +19,25 @@ void test_subscribing()
     std::shared_ptr<Observer>observer3 = std::make_shared<Observer>("observer3");
     Subject subject = Subject();
     std::cout<<"------------------"<<std::endl;
-    print_list(subject.observerNames());
+    print_list(subject.observers_of_topic());
     subject.add_observer(observer);
     std::cout<<"------------------"<<std::endl;
-    print_list(subject.observerNames());
+    print_list(subject.observers_of_topic());
     subject.add_observer(observer2);
     std::cout<<"------------------"<<std::endl;
-    print_list(subject.observerNames());
+    print_list(subject.observers_of_topic());
     subject.add_observer(observer3);
     std::cout<<"------------------"<<std::endl;
-    print_list(subject.observerNames());
+    print_list(subject.observers_of_topic());
     subject.remove_observer(observer2);
     std::cout<<"------------------"<<std::endl;
-    print_list(subject.observerNames());
+    print_list(subject.observers_of_topic());
     subject.remove_observer(observer);
     std::cout<<"------------------"<<std::endl;
-    print_list(subject.observerNames());
+    print_list(subject.observers_of_topic());
     subject.remove_observer(observer3);
     std::cout<<"------------------"<<std::endl;
-    print_list(subject.observerNames());
+    print_list(subject.observers_of_topic());
 }
 
 void test_update()
@@ -49,8 +49,12 @@ void test_update()
         public:
             ObserverNameOnUpdate(std::string name): Observer(name) {}
             ~ObserverNameOnUpdate() = default;
-            virtual void update() override {
-                std::cout<<observer_name<<" update called"<<std::endl;
+            virtual void update(std::string message = "") override {
+                std::cout<<observer_name<<" update called";
+                if(message.size()){
+                    std::cout<<" with message: "<<message<<std::endl;
+                }
+                std::cout<<std::endl;
             }
     };
 

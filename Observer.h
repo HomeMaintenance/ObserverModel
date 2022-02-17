@@ -21,14 +21,9 @@ class Observer {
          *
          * @param message_from_subject Message sent from subject
          */
-        virtual void update(const std::string& message_from_subject);
+        virtual void update(const std::string message_from_subject = "");
         /**
          * @brief Function called from subject when observer is notified
-         *
-         */
-        virtual void update();
-        /**
-         * @brief Name of the observer
          *
          */
         std::string observer_name;

@@ -62,16 +62,16 @@ void test_update()
     {
         std::shared_ptr<ObserverNameOnUpdate>observer2 = std::make_shared<ObserverNameOnUpdate>("observer2");
         subject.add_observer(observer);
-        subject.notify();
+        subject.notify_default();
         std::cout<<"------------------"<<std::endl;
         subject.add_observer(observer2);
-        subject.notify();
+        subject.notify_default();
         std::cout<<"------------------"<<std::endl;
         subject.remove_observer(observer);
-        subject.notify();
+        subject.notify_default();
         std::cout<<"------------------"<<std::endl;
     }
-    subject.notify();
+    subject.notify_default();
     std::cout<<"------------------"<<std::endl;
 }
 

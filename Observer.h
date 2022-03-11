@@ -15,7 +15,7 @@ class Observer {
          */
         explicit Observer(const std::string& name);
         Observer(const Observer&) = delete;
-        ~Observer() = default;
+        virtual ~Observer() = default;
         /**
          * @brief Function called from subject when observer is notified
          *
